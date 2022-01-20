@@ -7,19 +7,18 @@ class Lorem
 
     public function paragraph()
     {
-        $result .= $this->paragraphs()[0];
+        @$this->return[] = $this->baseParagraphs()[0];
         return $this;
     }
     public function paragraphs($count)
     {
         $numberOfParagraphs = count($this->baseParagraphs());
-        for ($i = 0; $i < $paragraphs; $i++) {
+        for ($i = 0; $i < $count; $i++) {
             $index = $i % $numberOfParagraphs;
 
-            $html .= $this->baseParagraphs()[$index];
+            @$this->return[] = $this->baseParagraphs()[$index];
         }
 
-        $result .= $this->baseParagraphs()[$index];
         return $this;
     }
     /**
@@ -34,9 +33,9 @@ class Lorem
             $height = $width;
         }
 
-        @$result .= '<img src="https://unsplash.it/' . $width . '/' . $height .
+        @$this->return[] = '<img src="https://unsplash.it/' . $width . '/' . $height .
         '/?random" ' . $this->addAttributes($attributes) . '>';
-        
+
         return $this;
     }
 
@@ -51,7 +50,7 @@ class Lorem
             $height = $width;
         }
 
-        @$result .= 'https://unsplash.it/' . $width . '/' . $height . '/?random';        
+        @$this->return[] = 'https://unsplash.it/' . $width . '/' . $height . '/?random';
         return $this;
     }
 
@@ -74,10 +73,21 @@ class Lorem
         return rtrim($attr);
     }
     /**
-     * 
+     *
      */
     public function get(){
-        return @$return;
+        return implode('\n', $this->return);
+    }
+    
+    public function getHtml(){
+        $newReturn = '';
+        foreach ($this->return as $key => $value) {
+            $newReturn .= '<p>' .
+                          $value .
+                          '</p>';
+        }
+        
+        return $newReturn;
     }
 
     /**

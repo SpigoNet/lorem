@@ -12,14 +12,14 @@ class Lorem
     }
     public function paragraphs($count)
     {
-        $numberOfParagraphs = count($this->paragraphs());
+        $numberOfParagraphs = count($this->baseParagraphs());
         for ($i = 0; $i < $paragraphs; $i++) {
             $index = $i % $numberOfParagraphs;
 
-            $html .= $this->paragraphs()[$index];
+            $html .= $this->baseParagraphs()[$index];
         }
 
-        $result .= $this->paragraphs()[$index];
+        $result .= $this->baseParagraphs()[$index];
         return $this;
     }
     /**
@@ -83,7 +83,7 @@ class Lorem
     /**
      * @return array
      */
-    private function paragraphs()
+    private function baseParagraphs()
     {
         return [
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non rhoncus odio. Aliquam dolor velit, consectetur vehicula imperdiet eget, gravida sit amet sem. In hac habitasse platea dictumst. In iaculis nibh vitae metus ullamcorper, nec hendrerit libero scelerisque. Suspendisse quis nulla a sem condimentum lobortis. Vestibulum commodo volutpat quam, sit amet blandit lectus auctor vel. Praesent sed laoreet orci, sit amet tincidunt felis. Curabitur tempus molestie lectus, et ornare ante hendrerit in. Phasellus consectetur orci sem, eget pulvinar enim condimentum et. Nunc imperdiet lorem eget urna pellentesque, non luctus enim pharetra. Nunc ex tellus, posuere sit amet finibus vel, sodales eget orci. Curabitur et arcu id ex suscipit imperdiet.',

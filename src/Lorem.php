@@ -5,6 +5,10 @@ class Lorem
 {
     private $result;
 
+    public function __construct(){
+        $this->return = array();
+    }
+
     public function paragraph()
     {
         @$this->return[] = $this->baseParagraphs()[0];
@@ -33,8 +37,8 @@ class Lorem
             $height = $width;
         }
 
-        @$this->return[] = '<img src="https://unsplash.it/' . $width . '/' . $height .
-        '/?random" ' . $this->addAttributes($attributes) . '>';
+        @$this->return[] = '<img width="'.$width.'" height="'.$height.'" src="https://picsum.photos/' . $width . '/' . $height .
+        '" ' . $this->addAttributes($attributes) . '>';
 
         return $this;
     }
@@ -50,7 +54,7 @@ class Lorem
             $height = $width;
         }
 
-        @$this->return[] = 'https://unsplash.it/' . $width . '/' . $height . '/?random';
+        @$this->return[] = 'https://picsum.photos/' . $width . '/' . $height . '';
         return $this;
     }
 
@@ -76,9 +80,11 @@ class Lorem
      *
      */
     public function get(){
-        return implode('\n', $this->return);
+        $retorn = implode('\n', $this->return);
+        $this->return = array();
+        return $retorn;
     }
-    
+
     public function getHtml(){
         $newReturn = '';
         foreach ($this->return as $key => $value) {
@@ -86,7 +92,7 @@ class Lorem
                           $value .
                           '</p>';
         }
-        
+        $this->return = array();
         return $newReturn;
     }
 

@@ -96,6 +96,22 @@ class Lorem
         return $newReturn;
     }
 
+    public function words($count = 1)
+    {
+        $newReturn = array();
+        $input = $this->baseWords();
+        foreach(array_rand($input, $count) as $key)
+        {
+            $newReturn[] = $input[$key];
+        }
+        $this->return[] = implode(' ', $newReturn);
+        return $this;
+    }
+    private function baseWords()
+    {
+        return explode(' ',strtolower(str_replace(['.',','],'', $this->baseParagraphs()[0])));
+    }
+
     /**
      * @return array
      */

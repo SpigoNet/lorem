@@ -4,6 +4,24 @@ namespace Spigo\Lorem;
 class Lorem
 {
     private $result;
+
+    public function paragraph()
+    {
+        $result .= $this->paragraphs()[0];
+        return $this;
+    }
+    public function paragraphs($count)
+    {
+        $numberOfParagraphs = count($this->paragraphs());
+        for ($i = 0; $i < $paragraphs; $i++) {
+            $index = $i % $numberOfParagraphs;
+
+            $html .= $this->paragraphs()[$index];
+        }
+
+        $result .= $this->paragraphs()[$index];
+        return $this;
+    }
     /**
      * @param int $width
      * @param null $height
